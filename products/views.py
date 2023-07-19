@@ -864,6 +864,27 @@ def productAvailabilityToggle(request, pk):
             'response': "Data not Found",
             'error': str(e)
         })
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def projectApproveToggle(request, pk):
+    try:
+        
+        
+        prod = ProductUser.objects.get(id=pk)
+        prod.approve_status= not prod.approve_status
+        prod.save()
+        return Response({
+            'code': status.HTTP_200_OK,
+            'response': "Toggled Data Successfully",
+
+        })
+    except Exception as e:
+        return Response({
+            'code': status.HTTP_400_BAD_REQUEST,
+            'response': "Data not Found",
+            'error': str(e)
+        })
         
 
 
