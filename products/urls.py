@@ -43,5 +43,6 @@ urlpatterns = [
     path('user/available/toggle/<int:pk>', productAvailabilityToggle),
     path('user/approve/toggle/<int:pk>', projectApproveToggle),
     path('user/approved/list', getUserProductApprovedList),
+    path('user/my-list', productListbyUser),
     
 ]
