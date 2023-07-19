@@ -42,5 +42,6 @@ urlpatterns = [
     path('user/delete/<int:pk>', productUserDelete),
     path('user/available/toggle/<int:pk>', productAvailabilityToggle),
     path('user/approve/toggle/<int:pk>', projectApproveToggle),
+    path('user/approved/list', getUserProductApprovedList),
     
 ]
