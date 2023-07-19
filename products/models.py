@@ -27,13 +27,6 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    cat_name = models.CharField(max_length=200)
-    cat_slug = models.SlugField(null=True, blank=True)
-    cat_parent = models.IntegerField(default=0)
-    cat_description = models.TextField(null=True)
-    cat_image = models.ImageField(upload_to= generate_filename, null=True, default='default/placeholder.jpeg')
-    cat_featured = models.BooleanField(default=False)
-    cat_status = models.BooleanField(default=False)
 
 
 class Category(models.Model):
