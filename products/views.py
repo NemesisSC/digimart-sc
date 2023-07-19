@@ -235,17 +235,6 @@ def productCreate(request):
                 name=product_data['unit']
             )
 
-        cat_data = {
-            'cat_name': request.data['cat_name'],
-            'cat_parent': request.data['cat_parent'],
-            'cat_description': request.data['cat_description'],
-            'cat_image': request.data['cat_image'],
-            'cat_featured': request.data['cat_featured'],
-            'cat_status': request.data['cat_status']
-        }
-        
-        Category.objects.create(data= cat_data)
-        
         product_serializer = ProductInfoSerializer(data=product_data)
 
         if product_serializer.is_valid():
