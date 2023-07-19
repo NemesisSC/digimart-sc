@@ -1,0 +1,7 @@
+.idea
+/venv
+/*/migrations
+/*/__pycache__
+/media
+/category
+/system_manager/helper.py
