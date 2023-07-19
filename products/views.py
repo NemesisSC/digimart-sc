@@ -731,6 +731,32 @@ def getUserProductApprovedList(request):
             'error': e
         })
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def productListbyUser(request):
+    try:
+        logged_in_user_id = request.user.id
+        
+        prod = ProductUser.objects.filter(created_by_id=logged_in_user_id)
+        serializer = ProductUserReadSerializer(prod, many=True)
+        
+        return Response({
+            'code': status.HTTP_200_OK,
+            'response': "My Products Retrieved Successfully",
+            'data': serializer.data
+        })
+    except ProductUser.DoesNotExist:
+        return Response({
+            'code': status.HTTP_404_NOT_FOUND,
+            'response': "No Product found for the logged-in user",
+            'data': []
+        })
+    except Exception as e:
+        return Response({
+            'code': status.HTTP_400_BAD_REQUEST,
+            'response': "Data not Found",
+            'error': str(e)
+        })
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -748,6 +774,7 @@ def productUserCreate(request):
         suffix = 1
         if ProductUser.objects.filter(product_name__exact=data['product_name']).exists():
             print("yes")
+            
             count = ProductUser.objects.filter(product_name__exact=data['product_name']).count()
             print(count)
             suffix += count
