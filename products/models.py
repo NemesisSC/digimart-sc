@@ -3,11 +3,7 @@ from category.models import *
 from django.contrib.auth.models import User
 # Create your models here.
 import uuid
-
-def generate_filename(instance, filename):
-    extension = filename.split('.')[-1]
-    new_filename = "%s.%s" % (uuid.uuid4(), extension)
-    return new_filename
+import system_manager.helper
 
 class Product(models.Model):
     pid = models.CharField(max_length=20, null=True, blank=True)
@@ -47,7 +43,7 @@ class ProductUnit(models.Model):
 
 class ProductImages(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_img')
-    image = models.ImageField(upload_to= generate_filename)
+    image = models.ImageField(upload_to= system_manager.helper.generate_filename)
 
 
 
@@ -66,4 +62,4 @@ class ProductUser(models.Model):
     sell_price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to= generate_filename, null=True, default='default/placeholder.jpeg')
+    image = models.ImageField(upload_to= system_manager.helper.generate_filename, null=True, default='default/placeholder.jpeg')
