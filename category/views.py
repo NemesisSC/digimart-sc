@@ -36,8 +36,7 @@ def upload_to(instance, filename):
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 #@permission_required(['product.view_category'], raise_exception=True)
-#This function is to get category list
-def gc(request):
+def get_category(request):
     try:
         category_list = Category.objects.filter(parent=0)
         category_serializer = CategorySerializer(category_list, many=True)
@@ -80,8 +79,7 @@ def get_sub_category(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 #@permission_required(['product.add_category'], raise_exception=True)
-#this function is to create category
-def cc(request):
+def categoryCreate(request):
     try:
         category_data = request.data
 
@@ -188,8 +186,7 @@ def categoryStatusToggle(request, category_id):
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 #@permission_required(['product.delete_category'], raise_exception=True)
-#this function is to delete category
-def cd(request, category_id):
+def categoryDelete(request, category_id):
     try:
         Category.objects.filter(id=category_id).delete()
         Category.objects.filter(parent=category_id).delete()
@@ -209,8 +206,7 @@ def cd(request, category_id):
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 #@permission_required(['product.change_category'], raise_exception=True)
-#this function is to edit categories
-def ce(request, category_id):
+def categoryEdit(request, category_id):
     try:
         category_data = request.data
 
