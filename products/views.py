@@ -745,7 +745,7 @@ def productListbyUser(request):
             'code': status.HTTP_400_BAD_REQUEST,
             'response': "Data not Found",
             'error': str(e)
-        })
+        })
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

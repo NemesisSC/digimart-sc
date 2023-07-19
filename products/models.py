@@ -25,17 +25,6 @@ class Product(models.Model):
     
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(null=True, blank=True)
-    parent = models.IntegerField(default=0)
-    description = models.TextField(null=True)
-    image = models.ImageField(upload_to= generate_filename, null=True, default='default/placeholder.jpeg')  
-    featured = models.BooleanField(default=False)
-    status = models.BooleanField(default=False)
-
-
-
 class ProductUnit(models.Model):
     name = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
